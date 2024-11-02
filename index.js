@@ -27,12 +27,20 @@ console.log(makeMessage(user, addMood, changeHobby, changePremium));
 const account = {
   balance: 10000,
 
-  deposit({ balance }, sumDeposit) {
+  deposit({ balance }) {
+    const sumDeposit = Number(
+      prompt("Введіть суму, на яку хочете поповнити баланс")
+    );
     balance += sumDeposit;
+    return balance;
   },
 
-  withdraw({ balance }, sumWithdraw) {
+  withdraw({ balance }) {
+    const sumWithdraw = Number(
+      prompt("Введіть суму, яку хочете зняти з баланс")
+    );
     balance -= sumWithdraw;
+    return balance;
   },
   showBalance({ balance }) {
     console.log(`У вас на балансі ${balance} грн`);
@@ -46,19 +54,50 @@ do {
     "Якщо хочете поповнити рахунок - натиснить 'Ok', якщо хочете зняти з рахунку - натиснить 'Cansel'"
   );
   if (choice === true) {
-    const sumDeposit = Number(
-      prompt("Введіть суму, на яку хочете поповнити баланс")
-    );
-    account.deposit(account, sumDeposit);
+    account.balance = account.deposit(account);
   } else {
-    const sumWithdraw = Number(
-      prompt("Введіть суму, яку хочете зняти з баланс")
-    );
-    account.withdraw(account, sumWithdraw);
+    account.balance = account.withdraw(account);
   }
   reapete = confirm("Чи хочети ви ще поповнити чи зняти з рахунку?");
 } while (reapete === true);
 
-account.showBalance(account, account);
+account.showBalance(account);
 
 ///////////////////////////////////////////////////////////////////////////////////
+
+// const account = {
+//   balance: 10000,
+
+//   deposit(sumDeposit) {
+//     this.balance += sumDeposit;
+//   },
+
+//   withdraw(sumWithdraw) {
+//     this.balance -= sumWithdraw;
+//   },
+//   showBalance(account) {
+//     console.log(`У вас на балансі ${account.balance} грн`);
+//   },
+// };
+
+// console.log("--------------------------- Task 7 ---------------------------");
+// let reapete;
+// do {
+//   const choice = confirm(
+//     "Якщо хочете поповнити рахунок - натиснить 'Ok', якщо хочете зняти з рахунку - натиснить 'Cansel'"
+//   );
+//   if (choice === true) {
+//     const sumDeposit = Number(
+//       prompt("Введіть суму, на яку хочете поповнити баланс")
+//     );
+//     account.deposit(sumDeposit);
+//   } else {
+//     const sumWithdraw = Number(
+//       prompt("Введіть суму, яку хочете зняти з баланс")
+//     );
+//     account.withdraw(sumWithdraw);
+//   }
+//   reapete = confirm("Чи хочети ви ще поповнити чи зняти з рахунку?");
+// } while (reapete === true);
+
+// account.showBalance(account);
